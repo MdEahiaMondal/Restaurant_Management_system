@@ -18,7 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 
+//************************** Backend Controller ********************************
 Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'Backend'], function ()
 {
     Route::get('dashboard','DashboardController@index')->name('admin.dashboard');
+    Route::resource('sliders','SliderController');
+
 });
