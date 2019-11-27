@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 
-@section('title', 'Sliders Create')
+@section('title', 'Category Create')
 
 @push('css')
 @endpush
