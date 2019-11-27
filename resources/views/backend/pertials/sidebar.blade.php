@@ -29,6 +29,10 @@
                 <a href="{{ route('sliders.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Slider</span></a>
             </li>
 
+            <li class="{{ Request::is('admin/categories') ? 'active' : '' }}">
+                <a href="{{ route('categories.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Category</span></a>
+            </li>
+
 
             <li>
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Forms</span><span class="fa arrow"></span></a>

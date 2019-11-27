@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        //
+        $categories = Category::latest()->get();
+       return view('backend.pages.category.index', compact('categories'));
     }
 
     /**
