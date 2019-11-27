@@ -17,11 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+/*Route::get('/home', 'HomeController@index')->name('home');*/
 
 
-
-Route::get('/dashboard', function ()
+Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'Backend'], function ()
 {
-    return view('backend.master.master');
+    Route::get('dashboard','DashboardController@index')->name('admin.dashboard');
 });
