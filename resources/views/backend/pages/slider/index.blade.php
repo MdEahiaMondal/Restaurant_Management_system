@@ -59,8 +59,8 @@
                                     <td>{{ $slider->title }}</td>
                                     <td>{{ $slider->updated_at }}</td>
                                     <td>
-                                        <a href="#0" class="btn btn-primary">Edit</a>
-                                        <a href="#0" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('sliders.edit', $slider->id) }}" class="btn btn-primary">Edit</a>
+                                        <a href="{{ route('sliders.destroy', $slider->id) }}" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
