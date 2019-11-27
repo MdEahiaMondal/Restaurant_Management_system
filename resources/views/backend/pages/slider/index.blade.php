@@ -20,17 +20,24 @@
                     <strong>Slider Tables</strong>
                 </li>
             </ol>
-        </div>
-        <div class="col-lg-2">
 
+        </div>
+
+        <div class="col-lg-2">
+            <a class="btn btn-primary m-t-lg" href="{{ route('sliders.create') }}">
+                <i class="fa fa-plus"></i> Add New
+            </a>
         </div>
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
+
+        @include('backend.message.msg')
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Sliders</h5>
+                        <h5>Sliders  <strong class="badge badge-danger">{{$sliders->count()}}</strong> </h5>
                     </div>
                     <div class="ibox-content">
 
@@ -40,6 +47,7 @@
                                 <th>SI</th>
                                 <th>Image</th>
                                 <th>Title</th>
+                                <th>Updated At</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -47,8 +55,9 @@
                             @foreach($sliders as $key =>  $slider)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td> {{ $slider->image }} </td>
+                                    <td><img style="width: 400px; height: 200px" src="{{ asset('uploads/sliders/'.$slider->image) }}" alt=""> </td>
                                     <td>{{ $slider->title }}</td>
+                                    <td>{{ $slider->updated_at }}</td>
                                     <td>
                                         <a href="#0" class="btn btn-primary">Edit</a>
                                         <a href="#0" class="btn btn-danger">Delete</a>

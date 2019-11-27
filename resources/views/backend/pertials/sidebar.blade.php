@@ -21,11 +21,11 @@
                 </div>
             </li>
 
-            <li class="active">
+            <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
                 <a href="{{ route('admin.dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
 
-            <li>
+            <li class="{{ Request::is('admin/sliders') ? 'active' : '' }}">
                 <a href="{{ route('sliders.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Slider</span></a>
             </li>
 
