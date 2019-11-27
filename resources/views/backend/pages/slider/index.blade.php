@@ -60,7 +60,22 @@
                                     <td>{{ $slider->updated_at }}</td>
                                     <td>
                                         <a href="{{ route('sliders.edit', $slider->id) }}" class="btn btn-primary">Edit</a>
-                                        <a href="{{ route('sliders.destroy', $slider->id) }}" class="btn btn-danger">Delete</a>
+
+
+                                        <form style="display: none" action="{{ route('sliders.destroy', $slider->id) }}"
+                                              method="post" id="form-delete-{{ $slider->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+
+
+                                        <button type="button" onclick="if (confirm('Are you sure to delete this item ?'))
+                                        {
+                                            event.preventDefault();
+                                            document.getElementById('form-delete-{{ $slider->id }}').submit();
+                                        }else{
+                                            event.preventDefault()
+                                            }" class="btn btn-danger">Delete</button>
                                     </td>
                                 </tr>
                             @endforeach

@@ -137,8 +137,20 @@ class SliderController extends Controller
 
 
 
-    public function destroy($id)
+    public function destroy(Slider $slider)
     {
 
+        // now delete the old image if we have (start)
+        if (file_exists('uploads/sliders/'.$slider->image))
+        {
+            unlink('uploads/sliders/'.$slider->image);
+        }
+        // now delete the old image if we have (end)
+
+        // finaly delete from the database
+
+        $slider->delete();
+
+        return redirect()->route('sliders.index')->with('success', 'Slider Deleted Successfully Done!');
     }
 }
