@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -15,25 +16,26 @@ class CategoryController extends Controller
        return view('backend.pages.category.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function create()
     {
-        //
+        return view('backend.pages.category.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+       $this->validate($request, [
+           'name' => 'required|unique:categories,name',
+       ]);
+
+       $request['slug'] = Str::slug($request->name);
+
+       Category::create($request->all());
+
+       return redirect()->route('categories.index')->with('success', 'Category Create Successfully Done !');
+
     }
 
     /**
