@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/','HomeController@index');
+Route::get('/','HomeController@index')->name('home');
+Route::post('reservation','ReservationController@reservation')->name('reservation.store');
 
 Auth::routes();
 
