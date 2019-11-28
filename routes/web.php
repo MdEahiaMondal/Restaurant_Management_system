@@ -27,4 +27,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'Backen
 
     Route::resource('categories','CategoryController');
 
+
+    Route::resource('items','ItemController');
+
 });
