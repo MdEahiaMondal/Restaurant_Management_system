@@ -58,11 +58,11 @@
                             @foreach($items as $key =>  $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td><img style="width: 400px; height: 200px" src="{{ asset('uploads/items/'.$item->image) }}" alt=""> </td>
-                                    <td>{{ $item->name }}</td>
+                                    <td><img style="width: 84px; height: 84px" src="{{ asset('uploads/items/'.$item->image) }}" alt=""> </td>
+                                    <td>{{ Str::limit($item->name,20)}}</td>
                                     <td>{{ $item->category->name }}</td>
                                     <td>{{ $item->price }}</td>
-                                    <td>{{ $item->description }}</td>
+                                    <td>{{ Str::limit($item->description,20) }}</td>
                                     <td>{{ $item->updated_at }}</td>
                                     <td>
                                         <a href="{{ route('items.edit', $item->id) }}" class="btn btn-primary">Edit</a>
