@@ -46,7 +46,7 @@ class ItemController extends Controller
 
         if (isset($image))
         {
-            
+
             $currentDate = Carbon::now()->toDateString();
             $setImageName =$slug . '-' . $currentDate . '-' .uniqid() . '-' . $image->getClientOriginalExtension();
 
@@ -64,12 +64,8 @@ class ItemController extends Controller
 
 
         $item = new Item();
-        $item->name = $request->name;
-        $item->category_id = $request->category_id;
-        $item->price = $request->price;
-        $item->description = $request->description;
-        $item->image = $setImageName;
-        $item->save();
+        $this->ItemSave($item, $request, $setImageName);
+
 
         return redirect()->route('items.index')->with('success', 'Item Create Successfully done !');
 
@@ -88,37 +84,83 @@ class ItemController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+
+    public function edit(Item $item)
     {
-        //
+        $categories = Category::all();
+        return view('backend.pages.item.edit', compact('item','categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+
+    public function update(Request $request, Item $item)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|max:255',
+            'category_id' => 'required|numeric',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'nullable|mimes:jpeg,jpg,png,bmp',
+        ]);
+
+
+        $image = $request->file('image');
+        $slug = Str::slug($request->name);
+
+        if (isset($image))
+        {
+            $currentDate = Carbon::now()->toDateString();
+            $setImageName =$slug . '-' . $currentDate . '-' .uniqid() . '-' . $image->getClientOriginalExtension();
+
+            if (file_exists('uploads/items/'.$item->image))
+            {
+                unlink('uploads/items/'.$item->image);
+            }
+
+
+            if (!file_exists('uploads/items'))
+            {
+                mkdir('uploads/items',0777,true);
+            }
+            $image->move('uploads/items',$setImageName);
+
+        }else{
+            $setImageName = $item->image;
+        }
+
+
+        $this->ItemSave($item, $request, $setImageName);
+
+        return redirect()->route('items.index')->with('success', 'Item Updated Successfully done !');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    protected function ItemSave($item, $request, $setImageName)
     {
-        //
+        $item->name = $request->name;
+        $item->category_id = $request->category_id;
+        $item->price = $request->price;
+        $item->description = $request->description;
+        $item->image = $setImageName;
+        $item->save();
+    }
+
+
+
+    public function destroy(Item $item)
+    {
+        if (file_exists('uploads/items/'.$item->image))
+        {
+            unlink('uploads/items/'.$item->image);
+        }
+
+
+        $item->delete();
+
+        return redirect()->route('items.index')->with('success', 'Item Deleted Successfully done !');
+
+
     }
 }
