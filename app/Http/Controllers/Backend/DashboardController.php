@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Category;
+use App\Contact;
 use App\Http\Controllers\Controller;
+use App\Item;
+use App\Reservation;
+use App\Slider;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -10,7 +15,12 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('backend.dashboard');
+        $items = Item::count();
+        $sliders = Slider::count();
+        $reservations = Reservation::count();
+        $categories = Category::count();
+        $contacu_us = Contact::count();
+        return view('backend.dashboard', compact('items','sliders', 'categories', 'reservations', 'contacu_us'));
     }
 
     /**
