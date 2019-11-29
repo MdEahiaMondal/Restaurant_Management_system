@@ -66,17 +66,15 @@
                                     <td>{{ $reservation->message }}</td>
                                     <td>
                                         @if($reservation->status == true)
-                                            <a href="#0" class="badge badge-primary">Confirm</a>
+                                            <a href="{{ route('reservation.unactive',$reservation->id) }}" class="badge badge-primary">Confirm</a>
                                             @else
-                                            <a href="#0" class="badge badge-danger">Not Confirm Yet</a>
+                                            <a href="{{ route('reservation.active', $reservation->id) }}" class="badge badge-danger">Not Confirm Yet</a>
 
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('categories.edit', $reservation->id) }}" class="btn btn-primary">Edit</a>
 
-
-                                        <form style="display: none" action="{{ route('categories.destroy', $reservation->id) }}"
+                                        <form style="display: none" action="{{ route('reservasions.destroy', $reservation->id) }}"
                                               method="post" id="form-delete-{{ $reservation->id }}">
                                             @csrf
                                             @method('DELETE')

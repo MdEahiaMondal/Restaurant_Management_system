@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'Backen
     Route::resource('items','ItemController');
 
 
+    Route::get('reservasion-active/{id}','ReservationController@active')->name('reservation.active');
+    Route::get('reservasion-unactive/{id}','ReservationController@unactive')->name('reservation.unactive');
     Route::resource('reservasions','ReservationController');
 
 });

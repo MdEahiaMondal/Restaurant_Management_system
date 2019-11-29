@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Reservation;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -16,69 +17,38 @@ class ReservationController extends Controller
        return view('backend.pages.reservation.index', compact('reservations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+
+    public function active($id)
     {
-        //
+        $reservation = Reservation::findOrFail($id);
+        $reservation->update(['status' => 1]);
+
+        Toastr::success('Publication Status Confirm ! ', 'success',["positionClass" => "toast-top-right"]);
+
+        return redirect()->back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function unactive($id)
     {
-        //
+        $reservation = Reservation::findOrFail($id);
+        $reservation->update(['status' => 0]);
+
+
+        Toastr::success('Publication Status Not Confirm Success ! ', 'success',["positionClass" => "toast-top-right"]);
+
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+
+        Toastr::success('Deleted Success ! ', 'success',["positionClass" => "toast-top-right"]);
+
+        return redirect()->back();
     }
 }
