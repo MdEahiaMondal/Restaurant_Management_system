@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\ReservationConfirm;
 use App\Reservation;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ReservationController extends Controller
 {
@@ -23,6 +25,9 @@ class ReservationController extends Controller
     {
         $reservation = Reservation::findOrFail($id);
         $reservation->update(['status' => 1]);
+
+        Notification::route('mail', $reservation->email)
+            ->notify(new ReservationConfirm());
 
         Toastr::success('Publication Status Confirm ! ', 'success',["positionClass" => "toast-top-right"]);
 
