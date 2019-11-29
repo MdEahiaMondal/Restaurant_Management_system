@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 
-@section('title', 'Reservation')
+@section('title', 'Contact')
 
     @push('css')
         <link href="{{ asset('backend/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
@@ -9,7 +9,7 @@
 @section('mainContent')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Reservation Tables</h2>
+            <h2>Contact Tables</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{ route('admin.dashboard') }}">Home</a>
@@ -18,7 +18,7 @@
                     <span>Tables</span>
                 </li>
                 <li class="active">
-                    <strong>Reservation Tables</strong>
+                    <strong>Contact Tables</strong>
                 </li>
             </ol>
 
@@ -32,7 +32,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Reservation  <strong class="badge badge-danger">{{$reservations->count()}}</strong> </h5>
+                        <h5>Contact  <strong class="badge badge-danger">{{$contacts->count()}}</strong> </h5>
                     </div>
                     <div class="ibox-content">
                         <div class="table-responsive">
@@ -41,35 +41,21 @@
                             <tr>
                                 <th>SI</th>
                                 <th>Name</th>
-                                <th>Phone</th>
                                 <th>Email</th>
-                                <th>Date and Time</th>
-                                <th>Message</th>
-                                <th>Status</th>
+                                <th>subject</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($reservations as $key =>  $reservation)
+                            @foreach($contacts as $key =>  $contact)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $reservation->name }}</td>
-                                    <td>{{ $reservation->phone }}</td>
-                                    <td>{{ $reservation->email }}</td>
-                                    <td>{{ $reservation->date_time }}</td>
-                                    <td>{{ $reservation->message }}</td>
+                                    <td>{{ $contact->name }}</td>
+                                    <td>{{ $contact->email }}</td>
+                                    <td>{{ $contact->message }}</td>
                                     <td>
-                                        @if($reservation->status == true)
-                                            <a href="{{ route('reservation.unactive',$reservation->id) }}" class="badge badge-primary">Confirm</a>
-                                            @else
-                                            <a href="{{ route('reservation.active', $reservation->id) }}" class="badge badge-danger">Not Confirm Yet</a>
-
-                                        @endif
-                                    </td>
-                                    <td>
-
-                                        <form style="display: none" action="{{ route('reservasions.destroy', $reservation->id) }}"
-                                              method="post" id="form-delete-{{ $reservation->id }}">
+                                        <form style="display: none" action="{{ route('contacts.destroy', $contact->id) }}"
+                                              method="post" id="form-delete-{{ $contact->id }}">
                                             @csrf
                                             @method('DELETE')
                                         </form>
@@ -78,7 +64,7 @@
                                         <button type="button" onclick="if (confirm('Are you sure to delete this item ?'))
                                         {
                                             event.preventDefault();
-                                            document.getElementById('form-delete-{{ $reservation->id }}').submit();
+                                            document.getElementById('form-delete-{{ $contact->id }}').submit();
                                         }else{
                                             event.preventDefault()
                                             }" class="btn btn-danger">Delete</button>

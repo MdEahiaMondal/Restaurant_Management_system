@@ -41,6 +41,10 @@
                 <a href="{{ route('reservasions.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Reservation</span></a>
             </li>
 
+            <li class="{{ Request::is('admin/contacts*') ? 'active' : '' }}">
+                <a href="{{ route('contacts.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Contact</span></a>
+            </li>
+
         </ul>
 
     </div>

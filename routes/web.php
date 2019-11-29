@@ -23,15 +23,13 @@ Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'Backen
 {
     Route::get('dashboard','DashboardController@index')->name('admin.dashboard');
 
-
     Route::resource('sliders','SliderController');
-
 
     Route::resource('categories','CategoryController');
 
-
     Route::resource('items','ItemController');
 
+    Route::resource('contacts','ContactController');
 
     Route::get('reservasion-active/{id}','ReservationController@active')->name('reservation.active');
     Route::get('reservasion-unactive/{id}','ReservationController@unactive')->name('reservation.unactive');
