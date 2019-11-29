@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 
-@section('title', 'Sliders Create')
+@section('title', 'Reservation Create')
 
 @push('css')
 @endpush
@@ -8,7 +8,7 @@
 @section('mainContent')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Slider Create</h2>
+            <h2>Category Create</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{ route('admin.dashboard') }}">Home</a>
@@ -17,7 +17,7 @@
                     <span>Create</span>
                 </li>
                 <li class="active">
-                    <strong>Slider Create</strong>
+                    <strong>Category Create</strong>
                 </li>
             </ol>
 
@@ -28,32 +28,21 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Slider <small>Please file up this form</small></h5>
+                        <h5>Category <small>Please file up this form</small></h5>
                     </div>
                     <div class="ibox-content">
 
 
                         <div class="row">
 
-                            <div class="col-sm-6 b-r">
+                            <div class="col-sm-12 b-r">
 
-                                <form role="form" enctype="multipart/form-data" action="{{ route('sliders.store') }}" method="post">
+                                <form role="form" action="{{ route('categories.store') }}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="image">Image</label>
-                                        <input  type="file" name="image"  accept="image/*" onchange="loadFile(event)"  placeholder="Enter email"
-                                                class="form-control">
-                                        @error('image')
-                                            <span class="text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="title">Title</label>
-                                        <input type="text" value="{{ old('title') }}"  name="title" id="title" placeholder="Enter Title" class="form-control">
-                                            @error('title')
+                                        <label for="name">Name</label>
+                                        <input type="text" value="{{ old('name') }}"  name="name" id="name" placeholder="Enter Name" class="form-control">
+                                            @error('name')
                                             <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -61,16 +50,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="reset" class="btn btn-warning">
                                         <input type="submit"  class="btn btn-primary">
+                                        <input type="reset" class="btn btn-warning">
+                                        <a href="{{ route('categories.index') }}" class="btn btn-primary">Back</a>
+
                                     </div>
                                 </form>
 
-                            </div>
-                            <div class="col-sm-6"><h4>Preview Image</h4>
-                                <p class="text-center">
-                                    <img width="400" id="output" src="#" alt="your image" />
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -84,7 +70,7 @@
 @push('script')
 
     <script>
-         function loadFile(event) {
+        var loadFile = function(event) {
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
         };

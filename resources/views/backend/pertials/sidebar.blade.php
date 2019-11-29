@@ -25,16 +25,20 @@
                 <a href="{{ route('admin.dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
 
-            <li class="{{ Request::is('admin/sliders') ? 'active' : '' }}">
+            <li class="{{ Request::is('admin/sliders*') ? 'active' : '' }}">
                 <a href="{{ route('sliders.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Slider</span></a>
             </li>
 
-            <li class="{{ Request::is('admin/categories') ? 'active' : '' }}">
+            <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
                 <a href="{{ route('categories.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Category</span></a>
             </li>
 
-            <li class="{{ Request::is('admin/items') ? 'active' : '' }}">
+            <li class="{{ Request::is('admin/items*') ? 'active' : '' }}">
                 <a href="{{ route('items.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Items</span></a>
+            </li>
+
+            <li class="{{ Request::is('admin/reservasions*') ? 'active' : '' }}">
+                <a href="{{ route('reservasions.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Reservation</span></a>
             </li>
 
         </ul>

@@ -823,7 +823,7 @@
     });
 </script>
 
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+<script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
 {!! Toastr::message() !!}
 
 @if ($errors->any())

@@ -31,4 +31,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'Backen
 
     Route::resource('items','ItemController');
 
+
+    Route::resource('reservasions','ReservationController');
+
 });
