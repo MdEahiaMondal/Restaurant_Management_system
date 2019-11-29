@@ -54,6 +54,8 @@
                                     <td>{{ $contact->email }}</td>
                                     <td>{{ $contact->message }}</td>
                                     <td>
+                                        <a class="btn btn-primary" href="{{ route('contacts.show', $contact->id) }}">Show</a>
+
                                         <form style="display: none" action="{{ route('contacts.destroy', $contact->id) }}"
                                               method="post" id="form-delete-{{ $contact->id }}">
                                             @csrf
