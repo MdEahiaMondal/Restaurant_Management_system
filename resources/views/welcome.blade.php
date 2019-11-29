@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/pricing.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}">
     <link href="{{ asset('frontend/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
 
 
     <style>
