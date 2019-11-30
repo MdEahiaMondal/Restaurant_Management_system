@@ -43,12 +43,12 @@ class SliderController extends Controller
             $currentDate = Carbon::now()->toDateString();
             $setImageName = $slug . '-' .$currentDate . '-' .uniqid() . '.' . $image->getClientOriginalExtension();
 
-            if (!file_exists('uploads/sliders'))
+            if (!file_exists(public_path( 'uploads/sliders')))
             {
-                mkdir('uploads/sliders', 0777,true);
+                mkdir(public_path('uploads/sliders'), 0777,true);
             }
 
-            $image->move('uploads/sliders',$setImageName);
+            $image->move(public_path('uploads/sliders'),$setImageName);
         }else {
              $setImageName = 'default.png';
 
@@ -100,9 +100,9 @@ class SliderController extends Controller
         {
 
             // now delete the old image if we have (start)
-            if (file_exists('uploads/sliders/'.$slider->image))
+            if (file_exists(public_path('uploads/sliders/').$slider->image))
             {
-                unlink('uploads/sliders/'.$slider->image);
+                unlink(public_path('uploads/sliders/').$slider->image);
             }
             // now delete the old image if we have (end)
 
@@ -111,16 +111,15 @@ class SliderController extends Controller
             $setImageName = $slug . '-' .$currentDate . '-' .uniqid() . '.' . $image->getClientOriginalExtension();
 
 
-            if (!file_exists('uploads/sliders'))
+            if (!file_exists(public_path( 'uploads/sliders')))
             {
-                mkdir('uploads/sliders', 0777,true);
+                mkdir(public_path('uploads/sliders'), 0777,true);
             }
 
-            $image->move('uploads/sliders',$setImageName);
-
+            $image->move(public_path('uploads/sliders'),$setImageName);
         }else {
-            // set old image if not choose
             $setImageName = $slider->image;
+
         }
 
 
@@ -141,9 +140,9 @@ class SliderController extends Controller
     {
 
         // now delete the old image if we have (start)
-        if (file_exists('uploads/sliders/'.$slider->image))
+        if (file_exists(public_path('uploads/sliders/').$slider->image))
         {
-            unlink('uploads/sliders/'.$slider->image);
+            unlink(public_path('uploads/sliders/').$slider->image);
         }
         // now delete the old image if we have (end)
 

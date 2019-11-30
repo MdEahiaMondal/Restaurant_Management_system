@@ -50,12 +50,12 @@ class ItemController extends Controller
             $currentDate = Carbon::now()->toDateString();
             $setImageName =$slug . '-' . $currentDate . '-' .uniqid() . '-' . $image->getClientOriginalExtension();
 
-            if (!file_exists('uploads/items'))
+            if (!file_exists(public_path('uploads/items')))
             {
-                mkdir('uploads/items',0777,true);
+                mkdir(public_path('uploads/items'),0777,true);
             }
 
-            $image->move('uploads/items',$setImageName);
+            $image->move(public_path('uploads/items'),$setImageName);
 
         }else{
             $setImageName = 'default.png';
@@ -113,17 +113,17 @@ class ItemController extends Controller
             $currentDate = Carbon::now()->toDateString();
             $setImageName =$slug . '-' . $currentDate . '-' .uniqid() . '-' . $image->getClientOriginalExtension();
 
-            if (file_exists('uploads/items/'.$item->image))
+            if (file_exists(public_path('uploads/items/').$item->image))
             {
-                unlink('uploads/items/'.$item->image);
+                unlink(public_path('uploads/items/').$item->image);
             }
 
 
-            if (!file_exists('uploads/items'))
+            if (!file_exists(('uploads/items')))
             {
-                mkdir('uploads/items',0777,true);
+                mkdir(public_path('uploads/items'),0777,true);
             }
-            $image->move('uploads/items',$setImageName);
+            $image->move(public_path('uploads/items'),$setImageName);
 
         }else{
             $setImageName = $item->image;
@@ -151,9 +151,9 @@ class ItemController extends Controller
 
     public function destroy(Item $item)
     {
-        if (file_exists('uploads/items/'.$item->image))
+        if (file_exists(public_path('uploads/items/').$item->image))
         {
-            unlink('uploads/items/'.$item->image);
+            unlink(public_path('uploads/items/').$item->image);
         }
 
 
