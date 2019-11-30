@@ -119,7 +119,7 @@ class ItemController extends Controller
             }
 
 
-            if (!file_exists(('uploads/items')))
+            if (!file_exists(public_path('uploads/items')))
             {
                 mkdir(public_path('uploads/items'),0777,true);
             }

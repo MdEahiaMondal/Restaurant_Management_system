@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="7187a633-d32b-4be0-9f29-1ac820a9007c" name="Restaurant_Management" url="https://khan.plabbd.com/">
+      <webServer id="51394831-a87b-49ab-b1b2-4ca8e27277af" name="mama-kitchen" url="http://ftp.plabbd.com">
         <fileTransfer host="ftp.plabbd.com" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Restaurant_Management">
+  <component name="PublishConfigData" serverName="mama-kitchen">
     <serverData>
-      <paths name="Restaurant_Management">
+      <paths name="mama-kitchen">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="https://khan.plabbd.com/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="http://ftp.plabbd.com" />
           </mappings>
         </serverdata>
       </paths>
